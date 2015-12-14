@@ -51,7 +51,9 @@ public final class PlaceholderPlugin extends JavaPlugin {
 
         @EventHandler
         public void onPluginDisable(PluginDisableEvent event) {
-            plugin.getPlaceholderManager().unregisterMappings(event.getPlugin());
+            if (event.getPlugin() != plugin) {
+                plugin.getPlaceholderManager().unregisterMappings(event.getPlugin());
+            }
         }
     }
 }
