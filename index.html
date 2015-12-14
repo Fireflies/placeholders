@@ -44,7 +44,7 @@
     <span class="pl-k">@Override</span>
     <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onEnable</span>() {
         <span class="pl-k">if</span>(getServer()<span class="pl-k">.</span>getPluginManager()<span class="pl-k">.</span>isPluginEnabled(<span class="pl-s"><span class="pl-pds">"</span>PlaceholderEngine<span class="pl-pds">"</span></span>)) {
-            <span class="pl-k">RegisteredServiceProvider&lt;<span class="pl-smi">BukkitPlaceholderManager</span>&gt;</span> service <span class="pl-k">=</span> getServer()<span class="pl-k">.</span>getServicesManager()<span class="pl-k">.</span>getRegistration(<span class="pl-smi">PlaceholderManager</span><span class="pl-k">.</span>class);
+            <span class="pl-k">RegisteredServiceProvider&lt;<span class="pl-smi">BukkitPlaceholderManager</span>&gt;</span> service <span class="pl-k">=</span> getServer()<span class="pl-k">.</span>getServicesManager()<span class="pl-k">.</span>getRegistration(<span class="pl-smi">BukkitPlaceholderManager</span><span class="pl-k">.</span>class);
             <span class="pl-k">if</span> (service<span class="pl-k">.</span>getProvider() <span class="pl-k">!=</span> <span class="pl-c1">null</span>) {
                 placeholderManager <span class="pl-k">=</span> service<span class="pl-k">.</span>getProvider();
                 placeholderManager<span class="pl-k">.</span>registerMapping(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>player_display_name<span class="pl-pds">"</span></span>, <span class="pl-smi">Player</span><span class="pl-k">::</span>getDisplayName);
