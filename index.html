@@ -55,6 +55,13 @@
 
 <p>Alternatively you can invoke the <code>PlaceholderPlugin#getPlaceholderManager()</code> method if you dislike Bukkit's service manager.</p>
 
+<h4>
+<a id="formatting-messages" class="anchor" href="#formatting-messages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Formatting Messages</h4>
+
+<p>Once you've acquired a <code>PlaceholderManager</code> instance you may invoke the <code>format</code> method on it to format any message to your heart's content. Check the examples above if you are looking for platform specific code. You may use as many placeholders in a string as you wish, though bear in mind that using too many at once may have an impact on your application performance.</p>
+
+<div class="highlight highlight-source-java"><pre>myPlayer<span class="pl-k">.</span>sendMessage(placeholderManager<span class="pl-k">.</span>format(myPlayer, <span class="pl-s"><span class="pl-pds">"</span>Hello there #{player_name}<span class="pl-pds">"</span></span>));</pre></div>
+
 <h3>
 <a id="bug-hunting" class="anchor" href="#bug-hunting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bug hunting</h3>
 
