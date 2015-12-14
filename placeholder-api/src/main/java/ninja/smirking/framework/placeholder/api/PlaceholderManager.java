@@ -2,6 +2,7 @@ package ninja.smirking.framework.placeholder.api;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -39,6 +40,16 @@ public class PlaceholderManager<TPlugin, TPlayer> {
 
         mappingFunctionsByRegistrant.computeIfAbsent(registrant, plugin -> new HashSet<>()).add(mappingFunction);
         mappingFunctions.put(placeholder, mappingFunction);
+    }
+
+    public final void unregisterMappings(TPlugin registrant) {
+        assertThat(registrant, "registrant should not be null", Objects::nonNull);
+        Set<Function<TPlayer, String>> functions = mappingFunctionsByRegistrant.remove(registrant);
+        for (Iterator<Function<TPlayer, String>> mappingFunction = mappingFunctions.values().iterator(); mappingFunction.hasNext(); ) {
+            if (functions.remove(mappingFunction.next())) {
+                mappingFunction.remove();
+            }
+        }
     }
 
     public final Function<TPlayer, String> getMappingFunction(String placeholder) {

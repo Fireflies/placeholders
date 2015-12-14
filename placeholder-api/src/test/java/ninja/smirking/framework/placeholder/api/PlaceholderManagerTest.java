@@ -24,6 +24,14 @@ public class PlaceholderManagerTest {
     }
 
     @Test
+    public void testUnregisterMapping() throws Exception {
+        placeholderManager.registerMapping("JUnit", "test_name", s -> testName.getMethodName());
+        assumeTrue("mapping function should be registered", placeholderManager.isMapped("test_name"));
+        placeholderManager.unregisterMappings("JUnit");
+        assertFalse("mapping function should be unregistered", placeholderManager.isMapped("test_name"));
+    }
+
+    @Test
     public void testFormat() throws Exception {
         placeholderManager.registerMapping("JUnit", "test_name", s -> testName.getMethodName());
         assumeTrue("mapping function should be registered", placeholderManager.isMapped("test_name"));
