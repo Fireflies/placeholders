@@ -46,9 +46,11 @@ public class PlaceholderManager<TPlugin, TPlayer> {
     public final void unregisterMappings(TPlugin registrant) {
         assertThat(registrant, "registrant should not be null", Objects::nonNull);
         Set<Function<TPlayer, String>> functions = mappingFunctionsByRegistrant.remove(registrant);
-        for (Iterator<Function<TPlayer, String>> mappingFunction = mappingFunctions.values().iterator(); mappingFunction.hasNext(); ) {
-            if (functions.remove(mappingFunction.next())) {
-                mappingFunction.remove();
+        if (functions != null) {
+            for (Iterator<Function<TPlayer, String>> mappingFunction = mappingFunctions.values().iterator(); mappingFunction.hasNext(); ) {
+                if (functions.remove(mappingFunction.next())) {
+                    mappingFunction.remove();
+                }
             }
         }
     }
