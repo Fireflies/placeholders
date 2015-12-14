@@ -13,9 +13,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Connor Spencer Harries
  * @param <TPlayer> player type for the server implementation
  * @param <TPlugin> plugin type for the server implementation
+ *
+ * @author Connor Spencer Harries
  */
 public class PlaceholderManager<TPlugin, TPlayer> {
     private static final Predicate<String> NOT_NULL_OR_EMPTY = string -> string != null && !string.isEmpty();

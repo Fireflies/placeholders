@@ -9,6 +9,14 @@ public final class PlaceholderPlugin extends JavaPlugin {
     private BukkitPlaceholderManager placeholderManager;
 
     @Override
+    public void onDisable() {
+        getServer().getServicesManager().unregister(BukkitPlaceholderManager.class, placeholderManager);
+        getServer().getServicesManager().unregister(PlaceholderManager.class, placeholderManager);
+        placeholderManager.release();
+        placeholderManager = null;
+    }
+
+    @Override
     public void onEnable() {
         placeholderManager = new BukkitPlaceholderManager();
         for (BukkitPlaceholder placeholder : BukkitPlaceholder.values()) {
@@ -19,14 +27,6 @@ public final class PlaceholderPlugin extends JavaPlugin {
         }
         getServer().getServicesManager().register(BukkitPlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getServicesManager().register(PlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
-    }
-
-    @Override
-    public void onDisable() {
-        getServer().getServicesManager().unregister(BukkitPlaceholderManager.class, placeholderManager);
-        getServer().getServicesManager().unregister(PlaceholderManager.class, placeholderManager);
-        placeholderManager.release();
-        placeholderManager = null;
     }
 
     public BukkitPlaceholderManager getPlaceholderManager() {

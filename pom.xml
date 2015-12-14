@@ -7,7 +7,9 @@
     <artifactId>placeholder-parent</artifactId>
     <packaging>pom</packaging>
     <url>https://github.com/Fireflies/placeholders</url>
-    <description>Highly flexible, cross platform framework for delivering customisable content to players</description>
+    <description>Highly flexible, cross platform framework for delivering customisable content to
+        players
+    </description>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>placeholder-api</module>
@@ -20,7 +22,8 @@
     </properties>
     <scm>
         <connection>scm:git:ssh://git@github.com:Fireflies/placeholders.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:Fireflies/placeholders.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com:Fireflies/placeholders.git
+        </developerConnection>
         <url>https://github.com/Fireflies/placeholders</url>
     </scm>
     <build>
