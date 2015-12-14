@@ -16,14 +16,14 @@ import java.util.regex.Pattern;
  * @param <TPlayer> player type for the server implementation
  * @param <TPlugin> plugin type for the server implementation
  */
-public final class PlaceholderManager<TPlugin, TPlayer> {
+public class PlaceholderManager<TPlugin, TPlayer> {
     private static final Predicate<String> NOT_NULL_OR_EMPTY = string -> string != null && !string.isEmpty();
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("#\\{([a-zA-Z-_]{1,32})\\}");
 
     private final Map<TPlugin, Set<Function<TPlayer, String>>> mappingFunctionsByRegistrant;
     private final Map<String, Function<TPlayer, String>> mappingFunctions;
 
-    public PlaceholderManager() {
+    protected PlaceholderManager() {
         this.mappingFunctionsByRegistrant = new HashMap<>();
         this.mappingFunctions = new ConcurrentHashMap<String, Function<TPlayer, String>>() {{
             put("hash_code", p -> String.valueOf(p.hashCode()));
