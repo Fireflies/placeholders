@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Placeholders by Fireflies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Placeholders</h1>
+      <h2 class="project-tagline">Flexible, cross platform API for delivering customised content to players.</h2>
+      <a href="https://github.com/Fireflies/placeholders" class="btn">View on GitHub</a>
+      <a href="https://github.com/Fireflies/placeholders/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Fireflies/placeholders/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h3>
+<a id="what-is-this-fantastic-project" class="anchor" href="#what-is-this-fantastic-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is this fantastic project?!</h3>
+
+<p>As a person that frequently decompiles the work of other people, I see a lot of repeated implementations. I'm not saying that every developer should be using a framework or centralised system, but when you have 3-10 classes per implementation being re-implemented every time then you should really consider looking into publishing or using a library you can re-use with minimal effort. The <a href="https://github.com/Fireflies/placeholders">placeholders</a> project allows developers to provide people with flexible and easy to maintain dynamic content. You shouldn't have to fret about updating every application that includes your (often inconsistently) re-implemented classes, you should be able to drag, drop and play.</p>
+
+<h3>
+<a id="harnessing-the-awesome-power-of-placeholders" class="anchor" href="#harnessing-the-awesome-power-of-placeholders" aria-hidden="true"><span class="octicon octicon-link"></span></a>Harnessing The Awesome Power Of Placeholders</h3>
+
+<p>Here are some examples to demonstrate how easy it is to create your own placeholders that can be re-used by anything depending on this API.</p>
+
+<h4>
+<a id="bukkit" class="anchor" href="#bukkit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bukkit</h4>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-c">/* </span>
+<span class="pl-c"> * External imports omitted.</span>
+<span class="pl-c"> */</span>
+
+<span class="pl-k">import</span> <span class="pl-smi">ninja.smirking.framework.placeholder.bukkit.BukkitPlaceholderManager</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MyPlugin</span> <span class="pl-k">extends</span> <span class="pl-e">JavaPlugin</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">BukkitPlaceholderManager</span> placeholderManager;
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onEnable</span>() {
+        <span class="pl-k">if</span>(getServer()<span class="pl-k">.</span>getPluginManager()<span class="pl-k">.</span>isPluginEnabled(<span class="pl-s"><span class="pl-pds">"</span>PlaceholderEngine<span class="pl-pds">"</span></span>)) {
+            <span class="pl-k">RegisteredServiceProvider&lt;<span class="pl-smi">BukkitPlaceholderManager</span>&gt;</span> service <span class="pl-k">=</span> getServer()<span class="pl-k">.</span>getServicesManager()<span class="pl-k">.</span>getRegistration(<span class="pl-smi">PlaceholderManager</span><span class="pl-k">.</span>class);
+            <span class="pl-k">if</span> (service<span class="pl-k">.</span>getProvider() <span class="pl-k">!=</span> <span class="pl-c1">null</span>) {
+                placeholderManager <span class="pl-k">=</span> service<span class="pl-k">.</span>getProvider();
+                placeholderManager<span class="pl-k">.</span>registerMapping(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>player_display_name<span class="pl-pds">"</span></span>, <span class="pl-smi">Player</span><span class="pl-k">::</span>getDisplayName);
+            }
+        }
+    }
+}</pre></div>
+
+<p>Alternatively you can invoke the <code>PlaceholderPlugin#getPlaceholderManager()</code> method if you dislike Bukkit's service manager.</p>
+
+<h3>
+<a id="bug-hunting" class="anchor" href="#bug-hunting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bug hunting</h3>
+
+<p>If you've discovered a bug please report it using the <a href="https://github.com/Fireflies/placeholders/issues">issue tracker</a>, I would hate to see people waste time faffing around trying to fix it themselves when other people may be able to swoop in and help out.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Fireflies/placeholders">Placeholders</a> is maintained by <a href="https://github.com/Fireflies">Fireflies</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-71387900-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
