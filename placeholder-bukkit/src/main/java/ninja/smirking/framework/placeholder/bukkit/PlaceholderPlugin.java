@@ -2,6 +2,8 @@ package ninja.smirking.framework.placeholder.bukkit;
 
 import ninja.smirking.framework.placeholder.api.PlaceholderManager;
 
+import java.util.Arrays;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -27,12 +29,10 @@ public final class PlaceholderPlugin extends JavaPlugin {
     public void onEnable() {
         placeholderManager = new BukkitPlaceholderManager();
         pluginListener = new PluginListener(this);
-        for (BukkitPlaceholder placeholder : BukkitPlaceholder.values()) {
+        Arrays.stream(BukkitPlaceholder.values()).forEach(placeholder -> {
             placeholderManager.registerMapping(this, placeholder.getPlaceholder(), placeholder.getMappingFunction());
-            for (String alias : placeholder.getAliases()) {
-                placeholderManager.registerMapping(this, alias, placeholder.getMappingFunction());
-            }
-        }
+            Arrays.stream(placeholder.getAliases()).forEach(alias -> placeholderManager.registerMapping(this, alias, placeholder.getMappingFunction()));
+        });
         getServer().getServicesManager().register(BukkitPlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getServicesManager().register(PlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getPluginManager().registerEvents(pluginListener, this);

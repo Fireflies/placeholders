@@ -34,6 +34,7 @@ public class PlaceholderPlugin {
                 bind(PlaceholderManager.class).toInstance(placeholderManager);
             }
         });
+        // TODO: Share Injector instance without creating singleton.
     }
 
     @Listener
