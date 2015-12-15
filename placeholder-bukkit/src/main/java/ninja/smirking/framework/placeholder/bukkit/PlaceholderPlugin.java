@@ -29,10 +29,7 @@ public final class PlaceholderPlugin extends JavaPlugin {
     public void onEnable() {
         placeholderManager = new BukkitPlaceholderManager();
         pluginListener = new PluginListener(this);
-        Arrays.stream(BukkitPlaceholder.values()).forEach(placeholder -> {
-            placeholderManager.registerMapping(this, placeholder.getPlaceholder(), placeholder.getMappingFunction());
-            Arrays.stream(placeholder.getAliases()).forEach(alias -> placeholderManager.registerMapping(this, alias, placeholder.getMappingFunction()));
-        });
+        Arrays.stream(BukkitPlaceholder.values()).forEach(placeholder -> placeholderManager.registerMapping(this, placeholder.getPlaceholder(), placeholder.getMappingFunction()));
         getServer().getServicesManager().register(BukkitPlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getServicesManager().register(PlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getPluginManager().registerEvents(pluginListener, this);

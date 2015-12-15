@@ -2,3 +2,5 @@ main: ninja.smirking.framework.placeholder.bukkit.PlaceholderPlugin
 version: ${project.version}
 name: PlaceholderEngine
 author: Mesmerised
+softdepend:
+- Vault

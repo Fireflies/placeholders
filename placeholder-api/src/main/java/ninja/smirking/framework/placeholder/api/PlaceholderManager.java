@@ -78,7 +78,14 @@ public class PlaceholderManager<TPlugin, TPlayer> {
                 while (foundAny) {
                     String placeholder = matcher.group(1);
                     buffer.append(string.substring(position, matcher.start()));
-                    buffer.append(mappingFunctions.getOrDefault(placeholder, defaultMapping).apply(player));
+
+                    Function<TPlayer, String> mappingFunction = mappingFunctions.getOrDefault(placeholder, defaultMapping);
+                    String result = mappingFunction.apply(player);
+                    if (result == null) {
+                        buffer.append(matcher.group(0));
+                    } else {
+                        buffer.append(result);
+                    }
                     position = matcher.end();
                     foundAny = matcher.find();
                 }
