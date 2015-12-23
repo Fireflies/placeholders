@@ -60,6 +60,10 @@ public class PlaceholderManager<TPlugin, TPlayer> {
         mappingFunctions.put(placeholder, mappingFunction);
     }
 
+    public final void registerMapping(TPlugin registrant, Placeholder<TPlayer> placeholder) {
+        registerMapping(registrant, placeholder.getText(), placeholder.getMappingFunction());
+    }
+
     public final void unregisterMappings(TPlugin registrant) {
         assertThat(registrant, "registrant should not be null", Objects::nonNull);
         Set<Function<TPlayer, String>> functions = mappingFunctionsByRegistrant.remove(registrant);

@@ -18,6 +18,8 @@
 package ninja.smirking.framework.placeholder.bukkit;
 
 import ninja.smirking.framework.placeholder.api.PlaceholderManager;
+import ninja.smirking.framework.placeholder.bukkit.impl.BukkitPlaceholder;
+import ninja.smirking.framework.placeholder.bukkit.impl.VaultPlaceholder;
 
 import java.util.Arrays;
 
@@ -25,6 +27,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -46,7 +49,14 @@ public final class PlaceholderPlugin extends JavaPlugin {
     public void onEnable() {
         placeholderManager = new BukkitPlaceholderManager();
         pluginListener = new PluginListener(this);
-        Arrays.stream(BukkitPlaceholder.values()).forEach(placeholder -> placeholderManager.registerMapping(this, placeholder.getPlaceholder(), placeholder.getMappingFunction()));
+
+        Plugin vaultPlugin = getServer().getPluginManager().getPlugin("Vault");
+        Arrays.stream(VaultPlaceholder.values()).filter(placeholder -> placeholder.isRegisterable(getServer())).forEach(placeholder -> {
+            // Register using Vault so that when it is disabled the placeholders are unregistered
+            placeholderManager.registerMapping(vaultPlugin, placeholder);
+        });
+
+        Arrays.stream(BukkitPlaceholder.values()).forEach(placeholder -> placeholderManager.registerMapping(this, placeholder));
         getServer().getServicesManager().register(BukkitPlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getServicesManager().register(PlaceholderManager.class, placeholderManager, this, ServicePriority.Highest);
         getServer().getPluginManager().registerEvents(pluginListener, this);
