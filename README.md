@@ -1,7 +1,7 @@
 placeholders
 ============
 
-[![Build Status](https://travis-ci.com/Fireflies/placeholders.svg?token=mCR592i9yE8CgMpQEhUH&branch=master)](https://travis-ci.com/Fireflies/placeholders)
+[![Build Status](https://travis-ci.com/csh/placeholders.svg?token=mCR592i9yE8CgMpQEhUH&branch=master)](https://travis-ci.com/csh/placeholders)
 
 Flexible, cross platform API for delivering customised content to players.
 
